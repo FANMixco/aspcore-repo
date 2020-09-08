@@ -7,12 +7,6 @@ trigger:
 - master
 
 pool:
-- task: Docker@2
-  inputs:
-    repository: 'fanmixco/aspnetcore-docker-image'
-    command: 'build'
-    Dockerfile: '**/Dockerfile'
-  vmImage: 'ubuntu-latest'
 
 variables:
   buildConfiguration: 'Release'
@@ -20,3 +14,9 @@ variables:
 steps:
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
+
+- task: Docker@2
+  inputs:
+    repository: 'fanmixco/aspnetcore-docker-image'
+    command: 'build'
+    Dockerfile: '**/Dockerfile'
