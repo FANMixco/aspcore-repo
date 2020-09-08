@@ -18,6 +18,15 @@ steps:
 
 - task: Docker@2
   inputs:
+    command: 'login'
+    containerRegistry: 'dockerRegistryServiceConnection1'
+
+- task: Docker@2
+  inputs:
     repository: 'fanmixco/aspnetcore-docker-image'
-    command: 'build'
+    command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
+
+- task: Docker@2
+  inputs:
+    command: 'logout'
