@@ -7,6 +7,11 @@ trigger:
 - master
 
 pool:
+- task: Docker@2
+  inputs:
+    repository: 'fanmixco/aspnetcore-docker-image'
+    command: 'build'
+    Dockerfile: '**/Dockerfile'
   vmImage: 'ubuntu-latest'
 
 variables:
